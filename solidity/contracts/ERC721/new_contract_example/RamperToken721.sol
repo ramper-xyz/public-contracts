@@ -27,6 +27,11 @@ contract RamperToken721 is ERC721Enumerable, IRamperInterface721 {
         // 3. a per-transaction limit (optional)
         // Where the limit retured is the lowest of these 3
 
+        // Because we don't limit transfers, balanceOf can be larger than max tokens per address
+        if (MAX_TOKENS_PER_ADDRESS < balanceOf(_userWallet)) {
+            return 0;
+        }
+
         uint256 userRemaining = MAX_TOKENS_PER_ADDRESS - balanceOf(_userWallet);
         uint256 remainingSupply = MAX_TOKENS - totalSupply();
 
@@ -46,7 +51,7 @@ contract RamperToken721 is ERC721Enumerable, IRamperInterface721 {
 
     function mint(address _userWallet, uint256 _quantity) override external payable {
         require(msg.value >= TOKEN_PRICE * _quantity, "Insufficient funds for requested tokens");
-        require(this.availableTokens(msg.sender) >= _quantity, "Requested number of tokens is over limit for minting");
+        require(this.availableTokens(_userWallet) >= _quantity, "Requested number of tokens is over limit for minting");
 
         uint256 tokenStart = totalSupply();
 
