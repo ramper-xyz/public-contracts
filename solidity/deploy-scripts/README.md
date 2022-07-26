@@ -1,0 +1,1 @@
+This folder contains deploy scripts for the sample contracts located at `contracts/`
