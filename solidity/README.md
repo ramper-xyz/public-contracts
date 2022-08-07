@@ -2,6 +2,8 @@
 
 This folder contains code for deploying Solidity contracts on the EVM (Current support for Ethereum and Polygon)
 
+For a full guide, check out our documentation at https://docs.ramper.xyz/nft-checkout-sdk/get-started-on-evm
+
 Check out the different contracts under `contracts/`, following the README file located in that folder.
 
 ### Basic Setup
