@@ -42,4 +42,12 @@ contract RamperBridge721 is IRamperBridgeInterface721 {
     function mint(address _userWallet, uint256 _quantity) override external payable {
         existingContract.mintRamper{value:msg.value}(_userWallet, _quantity);
     }
+
+    function safeBulkTransferFrom(address _from, address _to, uint256[] memory _tokenIds) override external {
+        // This contract MUST check that the _from matches the sender
+        require(msg.sender == _from, "Sender address must match the _from address");
+        for (uint256 i = 0; i < _tokenIds.length; i++) {
+            existingContract.safeTransferFrom(_from, _to, _tokenIds[i]);
+        }
+    }
 }

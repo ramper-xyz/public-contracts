@@ -27,7 +27,6 @@ interface IRamperInterface721 {
 
 
     /// @notice Helper Transfer function to allow multiple tokens to be transferred at once
-    /// @dev This is commented out here for compatibility with "Bridge" contracts, which cannot implement it
     ///
     /// @param _from The wallet to transfer tokens from
     /// @param _to The wallet to transfer tokens to
