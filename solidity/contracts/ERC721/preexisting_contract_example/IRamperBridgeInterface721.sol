@@ -3,6 +3,8 @@
 // This Interface should be implemented to be compatible with Ramper's NFT Checkout
 // Find out more at https://www.ramper.xyz/nftcheckout
 
+// PLEASE NOTE: Ramper will need to approve this contract to manage tokens. Please reach out to support for more information.
+
 pragma solidity ^0.8.0;
 
 interface IRamperBridgeInterface721 {
@@ -24,4 +26,12 @@ interface IRamperBridgeInterface721 {
     /// @param _userWallet The wallet to mint the NFT into
     /// @param _quantity The number of NFTs to be purchased
     function mint(address _userWallet, uint256 _quantity) external payable;
+
+    /// @notice Helper Transfer function to allow multiple tokens to be transferred at once
+    /// @dev Please note: This contract MUST check that the _from matches the sender
+    ///
+    /// @param _from The wallet to transfer tokens from
+    /// @param _to The wallet to transfer tokens to
+    /// @param _tokenIds An array of tokenIds to be transferred
+    function safeBulkTransferFrom(address _from, address _to, uint256[] memory _tokenIds) external;
 }
